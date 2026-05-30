@@ -1,0 +1,61 @@
+server:
+  port: 8222
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/users/**,/api/clients/**,/api/mecaniciens/**
+
+            - id: auth-service
+              uri: lb://auth-service
+              predicates:
+                - Path=/api/auth/**
+
+            - id: panne-service
+              uri: lb://panne-service
+              predicates:
+                - Path=/api/pannes/**
+
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                - Path=/api/notifications/**
+
+            - id: payment-service
+              uri: lb://payment-service
+              predicates:
+                - Path=/api/payments/**
+
+            - id: avis-service
+              uri: lb://avis-service
+              predicates:
+                - Path=/api/avis/**
+
+            - id: geoloc-service
+              uri: lb://geoloc-service
+              predicates:
+                - Path=/api/geoloc/**
+
+            - id: admin-service
+              uri: lb://admin-service
+              predicates:
+                - Path=/api/admin/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
