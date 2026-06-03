@@ -1,0 +1,10 @@
+# Use this workspace to collaborate
+workspace:
+  id: f82c52c6-27cf-4a22-81f4-20cfc515081b
+
+localResources:
+  docs:
+    - ..\user-service\HELP.md
+    - ..\eureka-server\HELP.md
+    - ..\api-gateway\HELP.md
+    - ..\README.md
